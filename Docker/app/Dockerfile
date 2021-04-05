@@ -1,8 +1,8 @@
 FROM php:8.0-rc-fpm
 
-RUN apt-get update && apt-get install -y \libfreetype6-dev libjpeg62-turbo-dev libxslt-dev libicu-dev libxml2-dev libonig-dev
+RUN apt-get update && apt-get install -y \curl wget git libfreetype6-dev libjpeg62-turbo-dev libxslt-dev libicu-dev libzip-dev libxml2-dev libonig-dev
 
-RUN docker-php-ext-install -j$(nproc) mbstring mysqli pdo_mysql
+RUN docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-configure intl
